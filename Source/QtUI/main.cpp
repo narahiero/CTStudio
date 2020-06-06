@@ -19,7 +19,7 @@ int main(int argc, char* argv[])
     QApplication app(argc, argv);
 
 #ifdef _WIN32
-    // use menu font
+    // use menu font on windows since Qt5 uses outdated font by default
     QApplication::setFont(QApplication::font("QMenu"));
 #endif
 

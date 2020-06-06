@@ -12,3 +12,9 @@ project(CTStudio VERSION 0.0.0)
 ########################################
 
 add_subdirectory(Source)
+
+if(ENABLE_TESTS)
+    enable_testing()
+    include(GoogleTest)
+    add_subdirectory(Tests)
+endif()

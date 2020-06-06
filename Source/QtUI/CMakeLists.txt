@@ -34,12 +34,7 @@ add_executable(CTStudio
     MenuBar.hpp
 )
 
-target_include_directories(CTStudio PRIVATE
-    "${PROJECT_SOURCE_DIR}/Source"
-    "${PROJECT_BINARY_DIR}/Source"
-)
-
-target_link_libraries(CTStudio Qt5::Widgets)
+target_link_libraries(CTStudio Core Qt5::Widgets)
 
 
 ########################################

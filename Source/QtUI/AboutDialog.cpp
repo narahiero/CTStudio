@@ -18,7 +18,15 @@ AboutDialog::AboutDialog(QWidget* parent) : QDialog(parent)
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
     setFixedSize(240, 180);
 
-    QString text = QStringLiteral("%1: %2").arg(tr("Version")).arg(CT_STUDIO_VERSION_STRING);
+    QString text = QStringLiteral(
+        "<p>"
+            "<b>%1:</b> %2<br>"
+            "<b>%3:</b> %4"
+        "</p>"
+    )
+    .arg(tr("Version")).arg(CT_STUDIO_VERSION_STRING)
+    .arg(tr("Qt Version")).arg(QT_VERSION_STR);
+
     QLabel* label = new QLabel(text);
 
     QHBoxLayout* layout = new QHBoxLayout;
