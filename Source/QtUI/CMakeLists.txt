@@ -26,6 +26,12 @@ set(CMAKE_AUTOMOC ON)
 
 add_executable(CTStudio
     main.cpp
+    AboutDialog.cpp
+    AboutDialog.hpp
+    MainWindow.cpp
+    MainWindow.hpp
+    MenuBar.cpp
+    MenuBar.hpp
 )
 
 target_include_directories(CTStudio PRIVATE
