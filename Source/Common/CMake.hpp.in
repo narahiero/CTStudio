@@ -1,0 +1,15 @@
+//////////////////////////////////////////////////
+//  Copyright (c) 2020 Nara Hiero
+//
+// This file is licensed under GPLv3+
+// Refer to the `License.txt` file included.
+//////////////////////////////////////////////////
+
+#pragma once
+
+#define CT_STUDIO_VERSION_MAJOR @CTStudio_VERSION_MAJOR@
+#define CT_STUDIO_VERSION_MINOR @CTStudio_VERSION_MINOR@
+#define CT_STUDIO_VERSION_PATCH @CTStudio_VERSION_PATCH@
+
+#define CT_STUDIO_VERSION_STRING \
+    "@CTStudio_VERSION_MAJOR@.@CTStudio_VERSION_MINOR@.@CTStudio_VERSION_PATCH@"
