@@ -22,6 +22,8 @@ public:
     explicit EditorContainer(QWidget* parent = nullptr);
     ~EditorContainer();
 
+    bool hasSingularEditor() const;
+
 private:
 
     bool split(EditorBase* editor, Qt::Orientation orientation);

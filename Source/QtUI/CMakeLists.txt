@@ -40,6 +40,8 @@ add_executable(CTStudio
     MainWindow.hpp
     MenuBar.cpp
     MenuBar.hpp
+    StatusBar.cpp
+    StatusBar.hpp
 )
 
 target_link_libraries(CTStudio Core Qt5::Widgets)

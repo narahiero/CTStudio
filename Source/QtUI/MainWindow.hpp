@@ -11,6 +11,7 @@
 
 class EditorContainer;
 class MenuBar;
+class StatusBar;
 
 class MainWindow final : public QMainWindow
 {
@@ -30,9 +31,11 @@ public:
 private:
 
     void createMenuBar();
+    void createStatusBar();
     void createEditorContainer();
 
     MenuBar* m_menubar;
+    StatusBar* m_statusbar;
 
     EditorContainer* m_container;
 };

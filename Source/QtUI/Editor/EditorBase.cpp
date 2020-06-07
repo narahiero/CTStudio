@@ -26,6 +26,11 @@ EditorBase::EditorBase(EditorContainer* container) : QWidget(),
 
 EditorBase::~EditorBase() = default;
 
+EditorContainer* EditorBase::getContainer() const
+{
+    return m_container;
+}
+
 bool EditorBase::splitH()
 {
     return m_container->split(this, Qt::Orientation::Horizontal);

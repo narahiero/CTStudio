@@ -13,6 +13,7 @@
 #include <QMenu>
 
 #include "QtUI/Editor/EditorBase.hpp"
+#include "QtUI/Editor/EditorContainer.hpp"
 
 EditorBar::EditorBar(EditorBase* editor) : QWidget(),
     m_editor{editor}
@@ -43,6 +44,8 @@ void EditorBar::createActions()
 
 void EditorBar::contextMenuEvent(QContextMenuEvent* event)
 {
+    m_removeAct->setDisabled(m_editor->getContainer()->hasSingularEditor());
+
     QMenu menu(this);
     menu.addAction(m_splitHAct);
     menu.addAction(m_splitVAct);

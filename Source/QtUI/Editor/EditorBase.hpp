@@ -26,6 +26,8 @@ public:
     explicit EditorBase(EditorContainer* container);
     ~EditorBase();
 
+    EditorContainer* getContainer() const;
+
     virtual EditorBase* duplicate() = 0;
 
     bool splitH();

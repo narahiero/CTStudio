@@ -10,12 +10,14 @@
 #include "QtUI/AboutDialog.hpp"
 #include "QtUI/Editor/EditorContainer.hpp"
 #include "QtUI/MenuBar.hpp"
+#include "QtUI/StatusBar.hpp"
 
 MainWindow::MainWindow() : QMainWindow()
 {
     resize(1080, 720);
 
     createMenuBar();
+    createStatusBar();
     createEditorContainer();
 }
 
@@ -35,6 +37,13 @@ void MainWindow::createMenuBar()
     connect(m_menubar, &MenuBar::showAboutDialog, this, &MainWindow::showAboutDialog);
 
     setMenuBar(m_menubar);
+}
+
+void MainWindow::createStatusBar()
+{
+    m_statusbar = new StatusBar(this);
+
+    setStatusBar(m_statusbar);
 }
 
 void MainWindow::createEditorContainer()

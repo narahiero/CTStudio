@@ -25,6 +25,11 @@ EditorContainer::EditorContainer(QWidget* parent) : QWidget(parent)
 
 EditorContainer::~EditorContainer() = default;
 
+bool EditorContainer::hasSingularEditor() const
+{
+    return m_oneEditor;
+}
+
 bool EditorContainer::split(EditorBase* editor, Qt::Orientation orientation)
 {
     // TODO: use same splitter if same orientation
