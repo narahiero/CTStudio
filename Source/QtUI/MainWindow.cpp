@@ -8,6 +8,7 @@
 #include "QtUI/MainWindow.hpp"
 
 #include "QtUI/AboutDialog.hpp"
+#include "QtUI/Editor/EditorContainer.hpp"
 #include "QtUI/MenuBar.hpp"
 
 MainWindow::MainWindow() : QMainWindow()
@@ -15,6 +16,7 @@ MainWindow::MainWindow() : QMainWindow()
     resize(1080, 720);
 
     createMenuBar();
+    createEditorContainer();
 }
 
 MainWindow::~MainWindow()
@@ -33,6 +35,13 @@ void MainWindow::createMenuBar()
     connect(m_menubar, &MenuBar::showAboutDialog, this, &MainWindow::showAboutDialog);
 
     setMenuBar(m_menubar);
+}
+
+void MainWindow::createEditorContainer()
+{
+    m_container = new EditorContainer(this);
+
+    setCentralWidget(m_container);
 }
 
 void MainWindow::terminate()

@@ -9,6 +9,7 @@
 
 #include <QMainWindow>
 
+class EditorContainer;
 class MenuBar;
 
 class MainWindow final : public QMainWindow
@@ -29,6 +30,9 @@ public:
 private:
 
     void createMenuBar();
+    void createEditorContainer();
 
     MenuBar* m_menubar;
+
+    EditorContainer* m_container;
 };

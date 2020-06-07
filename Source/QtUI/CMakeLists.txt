@@ -28,6 +28,14 @@ add_executable(CTStudio
     main.cpp
     AboutDialog.cpp
     AboutDialog.hpp
+    Editor/EditorBar.cpp
+    Editor/EditorBar.hpp
+    Editor/EditorBase.cpp
+    Editor/EditorBase.hpp
+    Editor/EditorContainer.cpp
+    Editor/EditorContainer.hpp
+    Editor/ProjectOutliner.cpp
+    Editor/ProjectOutliner.hpp
     MainWindow.cpp
     MainWindow.hpp
     MenuBar.cpp
