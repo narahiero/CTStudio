@@ -11,6 +11,8 @@ project(CTStudio VERSION 0.0.0)
 # Add subdirectories
 ########################################
 
+add_subdirectory(Deps)
+
 add_subdirectory(Source)
 
 if(ENABLE_TESTS)
