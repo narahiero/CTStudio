@@ -19,11 +19,11 @@ class EditorBase : public QWidget
 {
     Q_OBJECT
 
+    friend class EditorBar;
     friend class EditorContainer;
 
 public:
 
-    explicit EditorBase(EditorContainer* container);
     ~EditorBase();
 
     EditorContainer* getContainer() const;
@@ -36,11 +36,15 @@ public:
 
 protected:
 
+    explicit EditorBase(EditorContainer* container, int typeId);
+
     void setContents(QLayout* layout);
 
     EditorContainer* m_container;
 
 private:
+
+    void morphInto(int typeId);
 
     QVBoxLayout* m_layout;
     EditorBar* m_bar;

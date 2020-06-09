@@ -34,6 +34,8 @@ add_executable(CTStudio
     Editor/EditorBase.hpp
     Editor/EditorContainer.cpp
     Editor/EditorContainer.hpp
+    Editor/NodeProperties.cpp
+    Editor/NodeProperties.hpp
     Editor/ProjectOutliner.cpp
     Editor/ProjectOutliner.hpp
     MainWindow.cpp
@@ -53,7 +55,7 @@ target_link_libraries(CTStudio Core Qt5::Widgets)
 
 if(WIN32)
     set_target_properties(CTStudio PROPERTIES
-        WIN32_EXECUTABLE TRUE
+        #WIN32_EXECUTABLE TRUE
         DEBUG_POSTFIX "D"
     )
 

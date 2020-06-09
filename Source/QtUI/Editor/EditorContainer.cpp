@@ -10,10 +10,13 @@
 #include <QBoxLayout>
 #include <QSplitter>
 
+#include "QtUI/Editor/NodeProperties.hpp"
 #include "QtUI/Editor/ProjectOutliner.hpp"
 
 EditorContainer::EditorContainer(QWidget* parent) : QWidget(parent)
 {
+    registerAllTypeInfo();
+
     m_root = new QVBoxLayout;
     m_root->setContentsMargins(0, 0, 0, 0);
 
@@ -28,6 +31,11 @@ EditorContainer::~EditorContainer() = default;
 bool EditorContainer::hasSingularEditor() const
 {
     return m_oneEditor;
+}
+
+QList<EditorContainer::EditorTypeInfo> EditorContainer::getTypeInfo() const
+{
+    return m_typeInfo;
 }
 
 bool EditorContainer::split(EditorBase* editor, Qt::Orientation orientation)
@@ -92,4 +100,38 @@ bool EditorContainer::remove(EditorBase* editor)
     sp->deleteLater();
 
     return true;
+}
+
+void EditorContainer::morph(EditorBase* editor, int typeId)
+{
+    EditorBase* morphed = m_typeInfo.at(typeId).m_factory(this);
+
+    if (m_oneEditor)
+    {
+        m_root->removeWidget(editor);
+        m_root->addWidget(morphed);
+    }
+    else
+    {
+        QSplitter* sp = (QSplitter*)editor->parent();
+        sp->replaceWidget(sp->indexOf(editor), morphed);
+    }
+
+    editor->deleteLater();
+}
+
+#define REGISTER_TYPE_INFO(Type) \
+    registerTypeInfo( \
+        #Type, [](EditorContainer* container) -> EditorBase* { return new Type(container); } \
+    )
+
+void EditorContainer::registerAllTypeInfo()
+{
+    REGISTER_TYPE_INFO(ProjectOutliner);
+    REGISTER_TYPE_INFO(NodeProperties);
+}
+
+void EditorContainer::registerTypeInfo(const QString& name, EditorBase*(*factory)(EditorContainer*))
+{
+    m_typeInfo.push_back({name, factory});
 }

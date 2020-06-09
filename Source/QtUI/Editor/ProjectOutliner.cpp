@@ -11,7 +11,7 @@
 #include <QStringList>
 #include <QTreeWidget>
 
-ProjectOutliner::ProjectOutliner(EditorContainer* container) : EditorBase(container)
+ProjectOutliner::ProjectOutliner(EditorContainer* container) : EditorBase(container, 0)
 {
     QHBoxLayout* layout = new QHBoxLayout;
 

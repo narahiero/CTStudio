@@ -8,20 +8,20 @@
 #include "QtUI/Editor/EditorBar.hpp"
 
 #include <QBoxLayout>
+#include <QComboBox>
 #include <QContextMenuEvent>
-#include <QLabel>
 #include <QMenu>
 
 #include "QtUI/Editor/EditorBase.hpp"
 #include "QtUI/Editor/EditorContainer.hpp"
 
-EditorBar::EditorBar(EditorBase* editor) : QWidget(),
+EditorBar::EditorBar(EditorBase* editor, int typeId) : QWidget(),
     m_editor{editor}
 {
     m_layout = new QHBoxLayout;
 
-    QLabel* label = new QLabel("Editor Bar");
-    m_layout->addWidget(label);
+    createTypeSelect(typeId);
+    m_layout->addWidget(m_typeSelect);
 
     setLayout(m_layout);
 
@@ -29,6 +29,21 @@ EditorBar::EditorBar(EditorBase* editor) : QWidget(),
 }
 
 EditorBar::~EditorBar() = default;
+
+void EditorBar::createTypeSelect(int typeId)
+{
+    m_typeSelect = new QComboBox;
+
+    auto typeInfoList = m_editor->getContainer()->getTypeInfo();
+    for (auto typeInfo : typeInfoList)
+    {
+        m_typeSelect->addItem(typeInfo.m_name);
+    }
+
+    m_typeSelect->setCurrentIndex(typeId);
+
+    connect(m_typeSelect, qOverload<int>(&QComboBox::currentIndexChanged), m_editor, &EditorBase::morphInto);
+}
 
 void EditorBar::createActions()
 {

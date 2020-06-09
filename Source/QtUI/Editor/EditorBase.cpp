@@ -12,13 +12,13 @@
 #include "QtUI/Editor/EditorBar.hpp"
 #include "QtUI/Editor/EditorContainer.hpp"
 
-EditorBase::EditorBase(EditorContainer* container) : QWidget(),
+EditorBase::EditorBase(EditorContainer* container, int typeId) : QWidget(),
     m_container{container}
 {
     m_layout = new QVBoxLayout;
     m_layout->setContentsMargins(0, 0, 0, 0);
 
-    m_bar = new EditorBar(this);
+    m_bar = new EditorBar(this, typeId);
     m_layout->addWidget(m_bar);
 
     setLayout(m_layout);
@@ -55,4 +55,9 @@ void EditorBase::setContents(QLayout* layout)
         old->deleteLater();
     }
     m_layout->addLayout(layout);
+}
+
+void EditorBase::morphInto(int typeId)
+{
+    m_container->morph(this, typeId);
 }
