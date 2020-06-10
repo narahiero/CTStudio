@@ -11,6 +11,8 @@
 
 class QVBoxLayout;
 
+class SharedEditorState;
+
 class EditorContainer final : public QWidget
 {
     Q_OBJECT
@@ -28,6 +30,8 @@ public:
     explicit EditorContainer(QWidget* parent = nullptr);
     ~EditorContainer();
 
+    SharedEditorState* getSharedEditorState() const;
+
     bool hasSingularEditor() const;
 
     QList<EditorTypeInfo> getTypeInfo() const;
@@ -41,6 +45,8 @@ private:
 
     void registerAllTypeInfo();
     void registerTypeInfo(const QString& name, EditorBase*(*factory)(EditorContainer*));
+
+    SharedEditorState* m_editorState;
 
     QVBoxLayout* m_root;
     bool m_oneEditor;

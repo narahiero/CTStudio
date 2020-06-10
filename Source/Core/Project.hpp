@@ -22,6 +22,9 @@ public:
     Project();
     Project(const std::string& name);
 
+    Project(const Project&) = delete;
+    void operator=(const Project&) = delete;
+
     ~Project();
 
     void setName(const std::string& name);

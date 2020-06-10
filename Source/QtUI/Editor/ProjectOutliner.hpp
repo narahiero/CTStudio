@@ -9,8 +9,13 @@
 
 #include "QtUI/Editor/EditorBase.hpp"
 
-class QTreeWidget;
-class QTreeWidgetItem;
+#include <QTreeWidget>
+
+class QHBoxLayout;
+class QLabel;
+
+class AbstractNode;
+class OutlinerNode;
 
 class ProjectOutliner final : public EditorBase
 {
@@ -25,6 +30,39 @@ public:
 
 private:
 
+    void createNoProjectLabel();
+    void createTree();
+    void connectAll();
+
+    void onNodesUpdate();
+
+    void nodeSelected(QTreeWidgetItem* curr, QTreeWidgetItem* old);
+
+    QHBoxLayout* m_layout;
+    bool m_treeSet;
+
+    QLabel* m_noProject;
+
     QTreeWidget* m_tree;
-    QTreeWidgetItem* m_project;
+    OutlinerNode* m_project;
+};
+
+class OutlinerNode final : public QObject, public QTreeWidgetItem
+{
+
+    friend class ProjectOutliner;
+
+public:
+
+    explicit OutlinerNode(AbstractNode* node, QTreeWidget* parent = nullptr);
+    explicit OutlinerNode(AbstractNode* node, OutlinerNode* parent);
+    ~OutlinerNode();
+
+private:
+
+    void createChilds();
+
+    void onNodeRenamed(const QString& name);
+
+    AbstractNode* m_node;
 };

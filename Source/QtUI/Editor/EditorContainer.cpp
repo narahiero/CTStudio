@@ -12,9 +12,12 @@
 
 #include "QtUI/Editor/NodeProperties.hpp"
 #include "QtUI/Editor/ProjectOutliner.hpp"
+#include "QtUI/Editor/SharedEditorState.hpp"
 
 EditorContainer::EditorContainer(QWidget* parent) : QWidget(parent)
 {
+    m_editorState = new SharedEditorState(this);
+
     registerAllTypeInfo();
 
     m_root = new QVBoxLayout;
@@ -27,6 +30,11 @@ EditorContainer::EditorContainer(QWidget* parent) : QWidget(parent)
 }
 
 EditorContainer::~EditorContainer() = default;
+
+SharedEditorState* EditorContainer::getSharedEditorState() const
+{
+    return m_editorState;
+}
 
 bool EditorContainer::hasSingularEditor() const
 {

@@ -28,16 +28,24 @@ add_executable(CTStudio
     main.cpp
     AboutDialog.cpp
     AboutDialog.hpp
+    CoreCallbacks.cpp
+    CoreCallbacks.hpp
     Editor/EditorBar.cpp
     Editor/EditorBar.hpp
     Editor/EditorBase.cpp
     Editor/EditorBase.hpp
     Editor/EditorContainer.cpp
     Editor/EditorContainer.hpp
+    Editor/Node/Node.cpp
+    Editor/Node/Node.hpp
+    Editor/Node/NodeManager.cpp
+    Editor/Node/NodeManager.hpp
     Editor/NodeProperties.cpp
     Editor/NodeProperties.hpp
     Editor/ProjectOutliner.cpp
     Editor/ProjectOutliner.hpp
+    Editor/SharedEditorState.cpp
+    Editor/SharedEditorState.hpp
     MainWindow.cpp
     MainWindow.hpp
     MenuBar.cpp
@@ -55,7 +63,7 @@ target_link_libraries(CTStudio Core Qt5::Widgets)
 
 if(WIN32)
     set_target_properties(CTStudio PROPERTIES
-        #WIN32_EXECUTABLE TRUE
+        WIN32_EXECUTABLE TRUE
         DEBUG_POSTFIX "D"
     )
 

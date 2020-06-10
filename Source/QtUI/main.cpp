@@ -9,6 +9,8 @@
 
 #include "Common/CMake.hpp"
 
+#include "Core/Core.hpp"
+
 #include "QtUI/MainWindow.hpp"
 
 int main(int argc, char* argv[])
@@ -26,5 +28,9 @@ int main(int argc, char* argv[])
     MainWindow w;
     w.show();
 
-    return app.exec();
+    int retval = app.exec();
+
+    Core::shutdown();
+
+    return retval;
 }

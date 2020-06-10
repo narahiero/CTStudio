@@ -8,13 +8,25 @@
 #include "QtUI/MainWindow.hpp"
 
 #include "QtUI/AboutDialog.hpp"
+#include "QtUI/CoreCallbacks.hpp"
 #include "QtUI/Editor/EditorContainer.hpp"
 #include "QtUI/MenuBar.hpp"
 #include "QtUI/StatusBar.hpp"
 
+MainWindow* MainWindow::s_instance = nullptr;
+
+MainWindow* MainWindow::getInstance()
+{
+    return s_instance;
+}
+
 MainWindow::MainWindow() : QMainWindow()
 {
+    s_instance = this;
+
     resize(1080, 720);
+
+    m_coreCBs = new CoreCallbacks(this);
 
     createMenuBar();
     createStatusBar();
@@ -63,6 +75,11 @@ bool MainWindow::requestTerminate()
 {
     terminate();
     return true;
+}
+
+CoreCallbacks* MainWindow::getCoreCallbacks() const
+{
+    return m_coreCBs;
 }
 
 void MainWindow::showAboutDialog()
