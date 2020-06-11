@@ -1,5 +1,5 @@
 ########################################
-# Add CTLib
+# CT Lib
 ########################################
 
 set(CT_LIB_BUILD_DOCS OFF CACHE STRING "Disable CT Lib docs")
@@ -12,7 +12,14 @@ add_subdirectory(CTLib)
 
 
 ########################################
+# pugixml
+########################################
+
+add_subdirectory(pugixml)
+
+
+########################################
 # Constants
 ########################################
 
-set(CT_STUDIO_DEPS CTLib CACHE INTERNAL "")
+set(CT_STUDIO_DEPS "CTLib;pugixml" CACHE INTERNAL "")
