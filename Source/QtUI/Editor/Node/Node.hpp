@@ -16,6 +16,8 @@ enum class NodeType
     Object
 };
 
+QString nameOf(NodeType type);
+
 class AbstractNode : public QObject
 {
     Q_OBJECT
@@ -27,7 +29,7 @@ public:
 
     virtual NodeType getType() const = 0;
 
-    void setName(const QString& name);
+    virtual void setName(const QString& name);
     QString getName() const;
 
 signals:
@@ -52,6 +54,8 @@ public:
     ~ProjectNode();
 
     NodeType getType() const override;
+
+    void setName(const QString& name) override;
 
     QList<FolderNode*> getFolders() const;
 

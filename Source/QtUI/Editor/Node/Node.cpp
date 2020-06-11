@@ -7,6 +7,27 @@
 
 #include "QtUI/Editor/Node/Node.hpp"
 
+#include "Core/Core.hpp"
+#include "Core/ProjectManager.hpp"
+
+QString nameOf(NodeType type)
+{
+    switch (type)
+    {
+    case NodeType::Project:
+        return QStringLiteral("Project");
+
+    case NodeType::Folder:
+        return QStringLiteral("Folder");
+
+    case NodeType::Object:
+        return QStringLiteral("Object");
+
+    default:
+        return QStringLiteral("???");
+    }
+}
+
 AbstractNode::AbstractNode(QObject* parent) : QObject(parent)
 {
 
@@ -35,6 +56,12 @@ ProjectNode::~ProjectNode() = default;
 NodeType ProjectNode::getType() const
 {
     return NodeType::Project;
+}
+
+void ProjectNode::setName(const QString& name)
+{
+    AbstractNode::setName(name);
+    Core::getProjectManager().renameProject(name.toStdString());
 }
 
 QList<FolderNode*> ProjectNode::getFolders() const

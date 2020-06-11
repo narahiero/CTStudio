@@ -32,6 +32,7 @@ private:
 
     void createNoProjectLabel();
     void createTree();
+    void initFromNodeManager();
     void connectAll();
 
     void onNodesUpdate();

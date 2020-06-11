@@ -12,6 +12,7 @@
 #include "QtUI/Editor/EditorContainer.hpp"
 #include "QtUI/MenuBar.hpp"
 #include "QtUI/StatusBar.hpp"
+#include "QtUI/Wizard/ProjectWizard.hpp"
 
 MainWindow* MainWindow::s_instance = nullptr;
 
@@ -43,6 +44,7 @@ void MainWindow::createMenuBar()
     m_menubar = new MenuBar(this);
 
     // file menu
+    connect(m_menubar, &MenuBar::newProject, this, &MainWindow::showProjectWizard);
     connect(m_menubar, &MenuBar::exit, this, &MainWindow::requestTerminate);
 
     // help menu
@@ -80,6 +82,12 @@ bool MainWindow::requestTerminate()
 CoreCallbacks* MainWindow::getCoreCallbacks() const
 {
     return m_coreCBs;
+}
+
+void MainWindow::showProjectWizard()
+{
+    ProjectWizard wizard;
+    wizard.exec();
 }
 
 void MainWindow::showAboutDialog()

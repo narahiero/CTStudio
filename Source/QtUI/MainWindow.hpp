@@ -31,6 +31,8 @@ public:
 
     CoreCallbacks* getCoreCallbacks() const;
 
+    void showProjectWizard();
+
     void showAboutDialog();
 
 private:

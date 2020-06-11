@@ -24,7 +24,7 @@ ProjectOutliner::ProjectOutliner(EditorContainer* container) : EditorBase(contai
     m_layout = new QHBoxLayout;
     setContents(m_layout);
 
-    m_layout->addWidget(m_noProject);
+    initFromNodeManager();
 
     connectAll();
 }
@@ -52,6 +52,25 @@ void ProjectOutliner::createTree()
     m_tree->setHeaderHidden(true);
 }
 
+void ProjectOutliner::initFromNodeManager()
+{
+    NodeManager* manager = m_container->getSharedEditorState()->getNodeManager();
+
+    ProjectNode* project = manager->getProjectNode();
+    if (project)
+    {
+        m_layout->addWidget(m_tree);
+        m_treeSet = true;
+
+        m_project = new OutlinerNode(project, m_tree);
+    }
+    else
+    {
+        m_layout->addWidget(m_noProject);
+        m_treeSet = false;
+    }
+}
+
 void ProjectOutliner::connectAll()
 {
     NodeManager* manager = m_container->getSharedEditorState()->getNodeManager();
@@ -71,6 +90,9 @@ void ProjectOutliner::onNodesUpdate()
         {
             m_layout->removeWidget(m_noProject);
             m_layout->addWidget(m_tree);
+            m_treeSet = true;
+
+            m_project = new OutlinerNode(project, m_tree);
         }
     }
     else
@@ -79,6 +101,9 @@ void ProjectOutliner::onNodesUpdate()
         {
             m_layout->removeWidget(m_tree);
             m_layout->addWidget(m_noProject);
+            m_treeSet = false;
+
+            m_project->deleteLater();
         }
     }
 }

@@ -52,6 +52,8 @@ add_executable(CTStudio
     MenuBar.hpp
     StatusBar.cpp
     StatusBar.hpp
+    Wizard/ProjectWizard.cpp
+    Wizard/ProjectWizard.hpp
 )
 
 target_link_libraries(CTStudio Core Qt5::Widgets)

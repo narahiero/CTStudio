@@ -42,13 +42,21 @@ void NodeManager::projectStateChanged()
 {
     ProjectManager& manager = Core::getProjectManager();
 
+    bool updated = false;
     if (manager.hasActiveProject())
     {
         if (!m_project)
         {
             m_project = new ProjectNode(this);
+            updated = true;
+        }
 
-            emit nodesUpdated();
+        auto project = manager.getActiveProject();
+
+        QString pName = QString::fromStdString(project->getName());
+        if (m_project->getName() != pName)
+        {
+            m_project->setName(pName);
         }
     }
     else
@@ -57,8 +65,12 @@ void NodeManager::projectStateChanged()
         {
             m_project->deleteLater();
             m_project = nullptr;
-
-            emit nodesUpdated();
+            updated = true;
         }
+    }
+
+    if (updated)
+    {
+        emit nodesUpdated();
     }
 }

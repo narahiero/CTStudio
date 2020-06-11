@@ -19,6 +19,10 @@ void MenuBar::createFileMenu()
 {
     QMenu* file = addMenu(tr("&File"));
 
+    file->addAction(tr("&New..."), this, &MenuBar::newProject, QKeySequence::New);
+
+    file->addSeparator();
+
     file->addAction(tr("E&xit"), this, &MenuBar::exit, QKeySequence::Quit);
 }
 

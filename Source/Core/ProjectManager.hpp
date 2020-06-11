@@ -25,6 +25,11 @@ public:
     bool hasActiveProject() const;
     std::shared_ptr<Project> getActiveProject() const;
 
+    // will overwrite active project
+    void createProject(const std::string& name);
+
+    void renameProject(const std::string& name);
+
 private:
 
     std::shared_ptr<Project> m_project;

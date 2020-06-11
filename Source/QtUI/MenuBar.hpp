@@ -20,6 +20,7 @@ public:
 
 signals:
 
+    void newProject();
     void exit();
 
     void showAboutDialog();

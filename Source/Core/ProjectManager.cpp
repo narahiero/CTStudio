@@ -7,6 +7,8 @@
 
 #include "Core/ProjectManager.hpp"
 
+#include "Core/Callbacks.hpp"
+
 ProjectManager::ProjectManager()
 {
 
@@ -25,4 +27,16 @@ bool ProjectManager::hasActiveProject() const
 std::shared_ptr<Project> ProjectManager::getActiveProject() const
 {
     return m_project;
+}
+
+void ProjectManager::createProject(const std::string& name)
+{
+    m_project = std::make_shared<Project>(name);
+    Callbacks::projectStateChanged();
+}
+
+void ProjectManager::renameProject(const std::string& name)
+{
+    m_project->setName(name);
+    Callbacks::projectStateChanged();
 }
